@@ -1,18 +1,40 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
 
-const greeting = "Hello "
+type Languaje struct {
+	lang     string
+	greeting string
+	world    string
+}
 
-func SayHello(name string) string {
+var greetingLangs = [...]Languaje{
+	{"english", "Hello ", "World!"},
+	{"spanish", "Hola ", "Mundo!"},
+	{"french", "Bonjour ", "Monde!"},
+	{"portuguese", "Olá ", "Mundo!"},
+}
 
-	if name == "" {
-		name = "World!"
+func SayHello(name string, lang string) string {
+	lang = strings.ToLower(lang)
+	defaultLang := greetingLangs[0]
+
+	for index, val := range greetingLangs {
+		if val.lang == lang {
+			defaultLang = greetingLangs[index]
+		}
 	}
 
-	return greeting + name
+	if name == "" {
+		name = defaultLang.world
+	}
+
+	return defaultLang.greeting + name
 }
 
 func main() {
-	fmt.Println(SayHello(""))
+	fmt.Println(SayHello("", "english"))
 }
