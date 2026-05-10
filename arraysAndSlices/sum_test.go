@@ -1,6 +1,19 @@
 package sum
 
-import "testing"
+import (
+	"slices"
+	"testing"
+)
+
+func assertCorrectMessage(t testing.TB, got, expect any) {
+	t.Helper()
+	if got != expect {
+		t.Errorf(
+			"\n - got: %v \n - expected: %v",
+			got, expect,
+		)
+	}
+}
 
 func TestSum(t *testing.T) {
 	t.Run("should sum all 5 the nums of an arr", func(t *testing.T) {
@@ -8,9 +21,7 @@ func TestSum(t *testing.T) {
 		got := Sum(numbers)
 		expect := 15
 
-		if got != expect {
-			t.Errorf("\n - got: %v \n - expect: %v", got, expect)
-		}
+		assertCorrectMessage(t, got, expect)
 	})
 
 	t.Run("can receive diferent arr sizes", func(t *testing.T) {
@@ -18,8 +29,23 @@ func TestSum(t *testing.T) {
 		got := Sum(numbers)
 		expect := 6
 
-		if got != expect {
-			t.Errorf("\n - got: %v \n - expect: %v", got, expect)
+		assertCorrectMessage(t, got, expect)
+	})
+}
+
+func TestSumAll(t *testing.T) {
+	t.Run("should recieve 2 arr and return on with both sums", func(t *testing.T) {
+		arr_one := []int{1, 2}
+		arr_two := []int{9, 3, 1}
+
+		got := SumAll(arr_one, arr_two)
+		expect := []int{3, 13}
+
+		if !slices.Equal(got, expect) {
+			t.Errorf(
+				"\n - got: %v \n - expected: %v",
+				got, expect,
+			)
 		}
 	})
 }
