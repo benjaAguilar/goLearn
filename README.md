@@ -33,3 +33,18 @@ Writing a test is just like writing a function, with a few rules:
 
 - *t.Run()* allow us to run different subtests describing different scenarios.
 - *t.Helper()* allow us to tell the test suite that this method is a helper. By doing this, when it fails, the line number reported will be in our function call rather than inside our test helper.
+
+## Integers
+
+We learn about the use of integers on Go, and something really intresting about Testing wich are the Testable Examples
+
+### What is a testable example?
+Testables examples are both test code and code examples on the docs of the package.
+this is really usefull cause Example functions are compiled whenever tests are executed. Because such examples are validated by the Go compiler, you can be confident your documentation's examples always reflect current code behavior.
+
+## Iteration
+On golang there are no `while`, `do`, `until` keywords, you can only use: `for`.
+we make use of `for` in the code exercises and Learn about Benchmarking.
+
+### Benchmarking
+Is a test that we can run on our test file to measure the code eficience.
