@@ -20,3 +20,19 @@ func SumAll(numsToSum ...[]int) []int {
 
 	return sums
 }
+
+func SumAllTails(numsToSum ...[]int) []int {
+	lengthOfNums := len(numsToSum)
+	sums := make([]int, lengthOfNums)
+
+	for i, val := range numsToSum {
+		if len(val) == 0 {
+			sums[i] = 0
+		} else {
+			tail := val[1:]
+			sums[i] = Sum(tail)
+		}
+	}
+
+	return sums
+}
