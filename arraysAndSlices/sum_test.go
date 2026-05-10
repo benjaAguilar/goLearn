@@ -1,6 +1,7 @@
 package sum
 
 import (
+	"reflect"
 	"slices"
 	"testing"
 )
@@ -42,6 +43,32 @@ func TestSumAll(t *testing.T) {
 		expect := []int{3, 13}
 
 		if !slices.Equal(got, expect) {
+			t.Errorf(
+				"\n - got: %v \n - expected: %v",
+				got, expect,
+			)
+		}
+	})
+}
+
+func TestSumAllTails(t *testing.T) {
+	t.Run("should sum all tails", func(t *testing.T) {
+		got := SumAllTails([]int{1, 2, 3}, []int{4, 9, 3})
+		expect := []int{5, 12}
+
+		if !reflect.DeepEqual(got, expect) {
+			t.Errorf(
+				"\n - got: %v \n - expected: %v",
+				got, expect,
+			)
+		}
+	})
+
+	t.Run("safely sum empty arrays", func(t *testing.T) {
+		got := SumAllTails([]int{}, []int{4, 9, 3})
+		expect := []int{0, 12}
+
+		if !reflect.DeepEqual(got, expect) {
 			t.Errorf(
 				"\n - got: %v \n - expected: %v",
 				got, expect,
